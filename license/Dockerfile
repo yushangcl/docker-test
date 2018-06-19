@@ -18,7 +18,6 @@ RUN rm -rf COPYRIGHT LICENSE README release THIRDPARTYLICENSEREADME-JAVAFX.txtTH
 RUN rm -rf     lib/plugin.jar \
            lib/ext/jfxrt.jar \
            bin/javaws \c
-           lib/javaws.jar \
            lib/desktop \
            plugin \
            lib/deploy* \
