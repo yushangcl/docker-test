@@ -17,7 +17,8 @@ RUN rm -rf COPYRIGHT LICENSE README release THIRDPARTYLICENSEREADME-JAVAFX.txtTH
 #删除其他无用文件
 RUN rm -rf     lib/plugin.jar \
            lib/ext/jfxrt.jar \
-           bin/javaws \c
+           bin/javaws \
+           lib/javaws.jar \
            lib/desktop \
            plugin \
            lib/deploy* \
