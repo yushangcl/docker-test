@@ -6,18 +6,18 @@ MAINTAINER yushangcl@163.com
 RUN apt-get update && apt-get -y install wget
 
 #下载jre
-wget --no-check-certificate -O jre-8u171-linux-x64.tar.gz http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233162_512cd62ec5174c3487ac17c61aaa89e8
+RUN wget --no-check-certificate -O jre-8u171-linux-x64.tar.gz http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233162_512cd62ec5174c3487ac17c61aaa89e8
 
 #解压
-tar xvcf jre-8u171-linux-x64.tar.gz
+RUN tar xvcf jre-8u171-linux-x64.tar.gz
 #进入目录
-cd jre1.8.0_171/
+RUN cd jre1.8.0_171/
 #删除文本文件
-rm -rf COPYRIGHT LICENSE README release THIRDPARTYLICENSEREADME-JAVAFX.txtTHIRDPARTYLICENSEREADME.txt Welcome.html
+RUN rm -rf COPYRIGHT LICENSE README release THIRDPARTYLICENSEREADME-JAVAFX.txtTHIRDPARTYLICENSEREADME.txt Welcome.html
 #删除其他无用文件
-rm -rf     lib/plugin.jar \
+RUN rm -rf     lib/plugin.jar \
            lib/ext/jfxrt.jar \
-           bin/javaws \
+           bin/javaws \c
            lib/javaws.jar \
            lib/desktop \
            plugin \
@@ -32,7 +32,7 @@ rm -rf     lib/plugin.jar \
            lib/amd64/libjavafx*.so \
            lib/amd64/libjfx*.so
 
-tar zcvf jre8.tar.gz *
+RUN tar zcvf jre8.tar.gz *
 
 # A streamlined jre
 ADD jre8.tar.gz /usr/java/jdk/
