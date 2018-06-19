@@ -1,4 +1,4 @@
-FROM alpine-glibc
+FROM frolvlad/alpine-glibc
 
 MAINTAINER yushangcl@163.com
 
