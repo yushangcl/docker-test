@@ -27,4 +27,5 @@ RUN set -x \
 	&& apk add --no-cache \
 		openjdk8-jre="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
-	
+
+RUN java -version
