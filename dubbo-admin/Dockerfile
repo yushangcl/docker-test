@@ -7,6 +7,6 @@ RUN apk add --no-cache git \
     && cd incubator-dubbo-ops \
     && mvn package -Dmaven.test.skip=true
 
-FROM jre8-alpine
+FROM 8-jre-alpine
 COPY --from=build /src/incubator-dubbo-ops/dubbo-admin/target/dubbo-admin-0.0.1-SNAPSHOT.jar .
 RUN java -jar dubbo-admin-0.0.1-SNAPSHOT.jar
