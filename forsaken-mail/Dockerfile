@@ -1,4 +1,5 @@
 FROM node:latest
+
 MAINTAINER huahui.wu <gayhub@live.cn>
 
 RUN apt-get clean all
