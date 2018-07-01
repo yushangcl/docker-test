@@ -1,9 +1,20 @@
-FROM alpine:3.4
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
 
-# A few problems with compiling Java from source:
+FROM alpine:3.7
+
+# A few reasons for installing distribution-provided OpenJDK:
+#
 #  1. Oracle.  Licensing prevents us from redistributing the official JDK.
+#
 #  2. Compiling OpenJDK also requires the JDK to be installed, and it gets
-#       really hairy.
+#     really hairy.
+#
+#     For some sample build times, see Debian's buildd logs:
+#       https://buildd.debian.org/status/logs.php?pkg=openjdk-8
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
@@ -20,12 +31,15 @@ RUN { \
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
 ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
-ENV JAVA_VERSION 8u111
-ENV JAVA_ALPINE_VERSION 8.111.14-r0
+ENV JAVA_VERSION 8u171
+ENV JAVA_ALPINE_VERSION 8.171.11-r0
 
 RUN set -x \
 	&& apk add --no-cache \
 		openjdk8-jre="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
-RUN java -version
+# If you're reading this and have any feedback on how this image could be
+# improved, please open an issue or a pull request so we can discuss it!
+#
+#   https://github.com/docker-library/openjdk/issues
