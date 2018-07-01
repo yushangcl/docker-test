@@ -18,12 +18,12 @@ ENV LANG C.UTF-8
 RUN apk add --no-cache ca-certificates
 
 ENV GPG_KEY 0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
-ENV PYTHON_VERSION 3.7.0b5
+ENV PYTHON_VERSION 3.6.5
 
 RUN set -ex \
 	&& apk add --no-cache --virtual .fetch-deps \
 		gnupg \
-		openssl \
+		libressl \
 		tar \
 		xz \
 	\
@@ -47,8 +47,8 @@ RUN set -ex \
 		libc-dev \
 		libffi-dev \
 		libnsl-dev \
-		openssl \
-		openssl-dev \
+		libressl \
+		libressl-dev \
 		libtirpc-dev \
 		linux-headers \
 		make \
@@ -108,7 +108,7 @@ ENV PYTHON_PIP_VERSION 10.0.1
 
 RUN set -ex; \
 	\
-	apk add --no-cache --virtual .fetch-deps openssl; \
+	apk add --no-cache --virtual .fetch-deps libressl; \
 	\
 	wget -O get-pip.py 'https://bootstrap.pypa.io/get-pip.py'; \
 	\
