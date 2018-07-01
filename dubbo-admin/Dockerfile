@@ -1,5 +1,5 @@
 FROM maven:3.5-jdk-8-alpine AS build
-LABEL Author="gayhub@live.cn"
+MAINTAINER huahui.wu <gayhub@live.cn>
 
 WORKDIR /src
 RUN apk add --no-cache git \
