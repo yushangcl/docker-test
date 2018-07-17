@@ -2,7 +2,7 @@ FROM php:7.1-alpine
 
 
 ENV KODEXPLORER_VERSION=4.25
-ENV KODEXPLORER_URL="https://github.com/kalcaddle/KODExplorer/archive/master.zip"
+ENV KODEXPLORER_URL="https://github.com/kalcaddle/KODExplorer/archive/master.tar.gz"
 
 RUN set -x \
   && mkdir -p /usr/src/kodexplorer \
