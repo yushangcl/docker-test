@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  master:
+    image: redis
+    container_name: redis-master
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}  --appendonly yes
+    sysctls:
+      - net.core.somaxconn=65535
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - ${BASE_DIR}/redis-slave/data:/data
+      - ${BASE_DIR}/redis-slave/conf:/usr/local/etc/redis
+
+  slave1:
+    image: redis
+    container_name: redis-slave-1
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof 192.168.173.67 ${REDIS_PORT} --port 6381  --requirepass ${REDIS_PASSWORD} --masterauth ${REDIS_PASSWORD}  --appendonly yes --bind 0.0.0.0
+    sysctls:
+      - net.core.somaxconn=65535
+    ports:
+      - 6381:6380
+    volumes:
+      - ${BASE_DIR}/redis-slave/data:/data
+      - ${BASE_DIR}/redis-slave/conf:/usr/local/etc/redis
+
+
+  slave2:
+    image: redis
+    container_name: redis-slave-2
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof 192.168.173.67 ${REDIS_PORT} --port 6382  --requirepass ${REDIS_PASSWORD} --masterauth ${REDIS_PASSWORD}  --appendonly yes --bind 0.0.0.0
+    sysctls:
+      - net.core.somaxconn=65535
+    ports:
+      - 6382:6381
+    volumes:
+      - ${BASE_DIR}/redis-slave/data:/data
+      - ${BASE_DIR}/redis-slave/conf:/usr/local/etc/redis

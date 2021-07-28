@@ -1,0 +1,17 @@
+version: '3'
+services:
+    # redis 单机
+    redis:
+      image: redis
+      container_name: redis
+      ports:
+        - ${REDIS_PORT}:6379
+      restart: always
+      command: redis-server /usr/local/etc/redis/redis.conf --requirepass ${REDIS_PASSWORD} --dir /data
+      sysctls:
+      - net.core.somaxconn=65535
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - /etc/hosts:/etc/hosts:ro
+        - ${BASE_DIR}/redis/data:/data
+        - ${BASE_DIR}/redis/conf:/usr/local/etc/redis
